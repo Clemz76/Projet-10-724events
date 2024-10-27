@@ -1,0 +1,31 @@
+from datetime import datetime, timedelta
+import re
+
+# Chemin de base avec "□"
+base_path = '□ "E:\\□\\□\\□\\□\\□\\□_□_'
+
+# Début et fin des dates
+start_date = datetime(2024, 1, 8, 22, 26)
+end_date = datetime(2024, 1, 10, 11, 50)
+
+# Nombre total de fichiers à générer
+total_files = 49375
+
+# Calculer l'intervalle de temps entre chaque fichier
+total_time = end_date - start_date
+time_per_file = total_time / total_files
+
+# Générer les chemins de fichiers avec des timestamps ordonnés et les afficher dans la console
+for i in range(1, total_files + 1):
+    # Calculer la date pour le fichier actuel
+    current_timestamp = start_date + time_per_file * i
+    formatted_timestamp = current_timestamp.strftime('%d-%m-%Y-%H:%M')
+    
+    # Générer le chemin de fichier
+    chemin = f'{formatted_timestamp} > □ "E:\\□\\□\\□\\□\\□\\□_□_{i}.□"'
+    
+    # Utiliser une expression régulière pour supprimer les espaces multiples
+    chemin = re.sub(r'\s+', ' ', chemin).strip()
+    
+    # Afficher le chemin avec le timestamp dans la console
+    print(chemin)
